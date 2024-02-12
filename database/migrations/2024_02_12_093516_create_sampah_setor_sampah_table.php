@@ -17,6 +17,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId('sampah_id')->constrained('sampahs')->cascadeOnUpdate()->cascadeOnDelete();
             $table->foreignId('setor_sampah_id')->constrained('setor_sampahs')->cascadeOnUpdate()->cascadeOnDelete();
+            $table->integer('berat_sampah');
+            $table->integer('total_sampah');
             $table->timestamps();
         });
     }

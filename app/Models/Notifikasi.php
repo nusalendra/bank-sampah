@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Notifikasi extends Model
 {
     use HasFactory;
+    protected $table = 'notifikasis';
+    protected $fillable = ['user_id', 'kategori', 'judul', 'pesan'];
+    protected $guarded = [];
+
+    public function user() {
+        return $this->belongsTo(User::class);
+    }
 }

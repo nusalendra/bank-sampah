@@ -21,6 +21,11 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'nomor_register',
+        'nomor_kartu_keluarga',
+        'jenis_kelamin',
+        'nomor_telephone',
+        'role',
     ];
 
     /**
@@ -41,4 +46,29 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function jemputSampah()
+    {
+        return $this->hasOne(JemputSampah::class);
+    }
+
+    public function notifikasi()
+    {
+        return $this->hasMany(Notifikasi::class);
+    }
+
+    public function riwayatTransaksi()
+    {
+        return $this->hasMany(RiwayatTransaksi::class);
+    }
+
+    public function setorSampah()
+    {
+        return $this->hasMany(SetorSampah::class);
+    }
+
+    public function tarikSaldo()
+    {
+        return $this->hasMany(TarikSaldo::class);
+    }
 }
