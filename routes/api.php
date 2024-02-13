@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\BeritaController;
 use App\Http\Controllers\Admin\NasabahController;
+use App\Http\Controllers\Admin\PenimbanganSetoranController;
 use App\Http\Controllers\Nasabah\SetorSampahController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -38,5 +39,11 @@ Route::get('/nasabah', [NasabahController::class, 'index']);
 // tampil detail data nasabah
 Route::get('/nasabah/detail/{id}', [NasabahController::class, 'show']);
 
+// tampil data keseluruhan di penimbangan setoran
+Route::get('/penimbangan-setoran', [PenimbanganSetoranController::class, 'index']);
+// tampil data yang akan di edit di penimbangan setoran
+Route::get('/penimbangan-setoran/edit/{id}', [PenimbanganSetoranController::class, 'edit']);
+// update data penimbangan setoran
+Route::put('/penimbangan-setoran/update', [PenimbanganSetoranController::class, 'update']);
 
 
