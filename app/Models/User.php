@@ -19,12 +19,10 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
-        'email',
         'password',
-        'nomor_register',
-        'nomor_kartu_keluarga',
         'jenis_kelamin',
         'nomor_telephone',
+        'foto_profil',
         'role',
     ];
 
@@ -46,6 +44,11 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function nasabah()
+    {
+        return $this->hasOne(Nasabah::class);
+    }
 
     public function jemputSampah()
     {
