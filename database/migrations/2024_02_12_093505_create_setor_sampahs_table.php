@@ -19,6 +19,7 @@ return new class extends Migration
             $table->dateTime('tanggal');
             $table->string('bukti_setor');
             $table->string('status');
+            $table->integer('total_setoran')->nullable();
             $table->timestamps();
         });
     }

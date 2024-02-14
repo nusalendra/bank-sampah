@@ -31,13 +31,13 @@ class DatabaseSeeder extends Seeder
         DB::table('sampahs')->insert([
             'nama' => Str::random(10),
             'jenis' => Str::random(10),
-            'harga_per_kg' => mt_rand(1, 10),
+            'harga_per_kg' => 25000,
         ]);
 
         DB::table('sampahs')->insert([
             'nama' => Str::random(10),
             'jenis' => Str::random(10),
-            'harga_per_kg' => mt_rand(1, 10),
+            'harga_per_kg' => 10000,
         ]);
 
         DB::table('setor_sampahs')->insert([

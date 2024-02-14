@@ -124,6 +124,7 @@ class PenimbanganSetoranController extends Controller
             $setorSampahId = 1;
 
             $createPivotTable = [];
+            $totalSetoran = [];
             foreach ($sampahIds as $sampahId) {
                 $data = Sampah::findOrFail($sampahId);
 
@@ -131,12 +132,16 @@ class PenimbanganSetoranController extends Controller
                     'sampah_id' => $data->id,
                     'setor_sampah_id' => $setorSampahId,
                     'berat_sampah' => $request->berat_sampah,
-                    'total_setoran' => $request->berat_sampah * $data->harga_per_kg
                 ];
+
+                $totalSetoran[] = $request->berat_sampah * $data->harga_per_kg;
             }
+
+            $totalSetoran = array_sum($totalSetoran);
 
             $setorSampah = SetorSampah::findOrFail($setorSampahId);
             $setorSampah->status = 'Dikonfirmasi';
+            $setorSampah->total_setoran = $totalSetoran;
             $setorSampah->save();
 
             $setorSampah->sampah()->attach($createPivotTable);

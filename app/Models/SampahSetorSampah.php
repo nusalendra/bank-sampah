@@ -9,7 +9,7 @@ class SampahSetorSampah extends Model
 {
     use HasFactory;
     protected $table = 'sampah_setor_sampah';
-    protected $fillable = ['sampah_id', 'setor_sampah_id', 'berat_sampah', 'total_setoran'];
+    protected $fillable = ['sampah_id', 'setor_sampah_id', 'berat_sampah'];
     protected $guarded = [];
 
     public function sampah() {

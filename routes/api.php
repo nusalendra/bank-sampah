@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\BeritaController;
 use App\Http\Controllers\Admin\NasabahController;
 use App\Http\Controllers\Admin\PenimbanganSetoranController;
+use App\Http\Controllers\Admin\RiwayatSetoranController;
 use App\Http\Controllers\Nasabah\SetorSampahController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -45,5 +46,10 @@ Route::get('/penimbangan-setoran', [PenimbanganSetoranController::class, 'index'
 Route::get('/penimbangan-setoran/edit/{id}', [PenimbanganSetoranController::class, 'edit']);
 // update data penimbangan setoran
 Route::put('/penimbangan-setoran/update', [PenimbanganSetoranController::class, 'update']);
+
+// tampil data riwayat setoran
+Route::get('/riwayat-setoran', [RiwayatSetoranController::class, 'index']);
+// tampil detail data riwayat setoran
+Route::get('/riwayat-setoran/detail/{id}', [RiwayatSetoranController::class, 'show']);
 
 

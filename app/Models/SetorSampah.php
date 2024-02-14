@@ -9,7 +9,7 @@ class SetorSampah extends Model
 {
     use HasFactory;
     protected $table = 'setor_sampahs';
-    protected $fillable = ['user_id', 'tanggal', 'bukti_setor', 'status'];
+    protected $fillable = ['user_id', 'tanggal', 'bukti_setor', 'status', 'total_setoran'];
     protected $guarded = [];
 
     public function user()
