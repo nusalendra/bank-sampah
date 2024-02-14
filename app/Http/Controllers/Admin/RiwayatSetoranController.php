@@ -17,7 +17,7 @@ class RiwayatSetoranController extends Controller
     public function index()
     {
         try {
-            $data = SetorSampah::with('user', 'sampahSetorSampah as sampah_setor')->get();
+            $data = SetorSampah::where('status', 'Dikonfirmasi')->with('user')->get();
 
             return response()->json([
                 'status' => true,
@@ -62,7 +62,23 @@ class RiwayatSetoranController extends Controller
      */
     public function show($id)
     {
-        //
+        try {
+            $data = SampahSetorSampah::with('sampah', 'setorSampah', 'setorSampah.user')->where('setor_sampah_id', $id)->get();
+
+            return response()->json([
+                'status' => true,
+                'message' => 'Data Berhasil Didapat',
+                'data' => [
+                    'setor_sampah' => $data,
+                ],
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'status' => 'error',
+                'message' => $e->getMessage(),
+                'data' => null
+            ], 500);
+        }
     }
 
     /**

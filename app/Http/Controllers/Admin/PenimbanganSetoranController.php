@@ -18,7 +18,7 @@ class PenimbanganSetoranController extends Controller
     public function index()
     {
         try {
-            $data = SetorSampah::with('user')->get();
+            $data = SetorSampah::where('status', 'Proses')->with('user')->get();
 
             return response()->json([
                 'status' => true,
