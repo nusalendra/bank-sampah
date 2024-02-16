@@ -4,7 +4,9 @@ use App\Http\Controllers\Admin\BeritaController;
 use App\Http\Controllers\Admin\NasabahController;
 use App\Http\Controllers\Admin\PenimbanganSetoranController;
 use App\Http\Controllers\Admin\RiwayatSetoranController;
+use App\Http\Controllers\Admin\SampahController;
 use App\Http\Controllers\Nasabah\SetorSampahController;
+use App\Http\Controllers\Nasabah\TarikSaldoController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -23,15 +25,16 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+// Bagian Nasabah 
+
 // ambil data yang sedang login saat ini
-Route::get('/get-data-user', [SetorSampahController::class, 'getDataUser']);
+Route::get('/setor-sampah/get-data-user', [SetorSampahController::class, 'getDataUser']);
 // create setor sampah
 Route::post('/setor-sampah/{id}', [SetorSampahController::class, 'store']);
 
-// tampil data berita
-Route::get('/berita', [BeritaController::class, 'index']);
-// create berita
-Route::post('/berita/create', [BeritaController::class, 'store']);
+// post tarik saldo
+Route::get('/tarik-saldo/get-data-user', [TarikSaldoController::class, 'getDataUser']);
+Route::post('/tarik-saldo/{id}', [TarikSaldoController::class, 'store']);
 
 // Bagian Admin
 
@@ -52,4 +55,12 @@ Route::get('/riwayat-setoran', [RiwayatSetoranController::class, 'index']);
 // tampil detail data riwayat setoran
 Route::get('/riwayat-setoran/detail/{id}', [RiwayatSetoranController::class, 'show']);
 
+// tampil data sampah
+Route::get('/sampah', [SampahController::class, 'index']);
+// create sampah
+Route::post('/sampah/create', [SampahController::class, 'store']);
 
+// tampil data berita
+Route::get('/berita', [BeritaController::class, 'index']);
+// create berita
+Route::post('/berita/create', [BeritaController::class, 'store']);

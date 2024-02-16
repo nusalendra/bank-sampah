@@ -28,6 +28,15 @@ class DatabaseSeeder extends Seeder
             'role' => 'Nasabah',
         ]);
 
+        DB::table('nasabahs')->insert([
+            'user_id' => 1,
+            'nomor_register' => Str::random(10),
+            'nomor_kartu_keluarga' => Hash::make('password'),
+            'saldo_aktual' => null,
+            'saldo_sementara' => null,
+            'status' => 'Aktif',
+        ]);
+
         DB::table('sampahs')->insert([
             'nama' => Str::random(10),
             'jenis' => Str::random(10),
