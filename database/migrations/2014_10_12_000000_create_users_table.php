@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('jenis_kelamin');
             $table->string('nomor_telephone');
             $table->string('foto_profil')->nullable();
-            $table->string('role')->default('nasabah');
+            $table->string('role');
             $table->rememberToken();
             $table->timestamps();
         });
