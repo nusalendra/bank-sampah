@@ -31,33 +31,16 @@ class TarikSaldoController extends Controller
         //
     }
 
-    public function getDataUser()
-    {
-        try {
-            $data = Auth::user();
-
-            return response()->json([
-                'status' => true,
-                'message' => 'Data Berhasil Didapat',
-                'data' => $data,
-            ]);
-        } catch (\Exception $e) {
-            return response()->json([
-                'status' => 'error',
-                'message' => $e->getMessage(),
-                'data' => null
-            ], 500);
-        }
-    }
-
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, $id)
+    public function store(Request $request)
     {
+        $user = Auth::user();
+        
         $validator = Validator::make($request->all(), [
             'metode' => 'required|string',
             'nomor_rekening' => 'required|string',
@@ -76,7 +59,7 @@ class TarikSaldoController extends Controller
 
         try {
             $data = new TarikSaldo();
-            $data->user_id = $id;
+            $data->user_id = $user->id;
             $data->metode = $request->metode;
             $data->nomor_rekening = $request->nomor_rekening;
             $data->jumlah_penarikan = $request->jumlah_penarikan;

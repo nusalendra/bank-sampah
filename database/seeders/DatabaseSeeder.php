@@ -23,7 +23,7 @@ class DatabaseSeeder extends Seeder
             'name' => Str::random(10),
             'password' => Hash::make('password'),
             'jenis_kelamin' => Str::random(10),
-            'nomor_telephone' => Str::random(10),
+            'nomor_telephone' => "089677888764",
             'foto_profil' => Str::random(10),
             'role' => 'Nasabah',
         ]);
@@ -31,7 +31,7 @@ class DatabaseSeeder extends Seeder
         DB::table('nasabahs')->insert([
             'user_id' => 1,
             'nomor_register' => Str::random(10),
-            'nomor_kartu_keluarga' => Hash::make('password'),
+            'NIK' => Str::random(10),
             'saldo_aktual' => null,
             'saldo_sementara' => null,
             'status' => 'Aktif',

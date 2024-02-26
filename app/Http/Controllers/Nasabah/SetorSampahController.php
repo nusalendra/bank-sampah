@@ -29,34 +29,15 @@ class SetorSampahController extends Controller
     {
     }
 
-    public function getDataUser()
-    {
-        try {
-            $data = Auth::user();
-
-            return response()->json([
-                'status' => true,
-                'message' => 'Data Berhasil Didapat',
-                'data' => $data,
-            ]);
-        } catch (\Exception $e) {
-            return response()->json([
-                'status' => 'error',
-                'message' => $e->getMessage(),
-                'data' => null
-            ], 500);
-        }
-    }
-
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, $id)
+    public function store(Request $request)
     {
-        $user = User::findOrFail($id);
+        $user = Auth::user();
 
         $validator = Validator::make($request->all(), [
             'tanggal' => 'required',
@@ -74,7 +55,7 @@ class SetorSampahController extends Controller
 
         try {
             $data = new SetorSampah();
-            $data->user_id = $id;
+            $data->user_id = $user->id;
             $data->tanggal = $request->tanggal;
             if ($request->hasFile('bukti_setor')) {
                 $file = $request->file('bukti_setor');

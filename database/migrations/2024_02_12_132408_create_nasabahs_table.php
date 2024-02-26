@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained('users')->cascadeOnUpdate()->cascadeOnDelete();
             $table->string('nomor_register')->nullable();
-            $table->string('nomor_kartu_keluarga')->nullable();
+            $table->string('NIK')->nullable();
             $table->string('saldo_aktual')->nullable();
             $table->string('saldo_sementara')->nullable();
             $table->string('status')->default('Inactive');
