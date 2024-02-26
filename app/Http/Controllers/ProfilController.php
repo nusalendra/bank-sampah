@@ -30,4 +30,45 @@ class ProfilController extends Controller
             ], 500);
         }
     }
+
+    public function ubahPassword(Request $request)
+    {
+        $userLogin = Auth::user();
+
+        $validator = Validator::make($request->all(), [
+            'password_lama' => 'required',
+            'password_baru' => 'required',
+            'ulangi_password_baru' => 'required|same:password_baru'
+        ]);
+
+        if ($validator->fails()) {
+            $validator->errors()->first();
+            return response()->json([
+                'status' => false,
+                'message' => $validator->errors(),
+                'data' => null
+            ], 422);
+        }
+
+        if (!Hash::check($request->password_lama, $userLogin->password)) {
+            return response()->json(['error' => 'Password lama tidak cocok'], 422);
+        }
+
+        try {
+            $user = User::find($userLogin->id);
+            $user->password = Hash::make($request->password_baru);
+            $user->save();
+
+            return response()->json([
+                'status' => true,
+                'message' => 'Password Berhasil Diubah'
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'status' => 'error',
+                'message' => $e->getMessage(),
+                'data' => null
+            ], 500);
+        }
+    }
 }

@@ -35,8 +35,11 @@ Route::post('/login', LoginController::class);
 Route::post('/lupa-password', ForgotPasswordController::class);
 
 Route::middleware(['auth:sanctum'])->group(function () {
-    Route::get('/get-data-user', [ProfilController::class, 'getDataUser']);
     // Bagian Nasabah 
+
+    // get data user
+    Route::get('/get-data-user', [ProfilController::class, 'getDataUser']);
+    Route::post('/ubah-password', [ProfilController::class, 'ubahPassword']);
 
     // create setor sampah
     Route::post('/setor-sampah', [SetorSampahController::class, 'store']);
