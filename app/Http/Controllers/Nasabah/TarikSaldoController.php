@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Nasabah;
 
 use App\Http\Controllers\Controller;
+use App\Models\Notifikasi;
 use App\Models\TarikSaldo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -40,12 +41,15 @@ class TarikSaldoController extends Controller
     public function store(Request $request)
     {
         $user = Auth::user();
-        
+
         $validator = Validator::make($request->all(), [
             'metode' => 'required|string',
             'nomor_rekening' => 'required|string',
             'jumlah_penarikan' => 'required|numeric|max:49000',
-            'total_penarikan' => 'required'
+            'total_penarikan' => 'required',
+            'kategori' => 'required',
+            'judul' => 'required',
+            'pesan' => 'required'
         ]);
 
         if ($validator->fails()) {
@@ -66,6 +70,13 @@ class TarikSaldoController extends Controller
             $data->total_penarikan = $request->total_penarikan;
 
             $data->save();
+
+            $notifikasi = new Notifikasi();
+            $notifikasi->user_id = $user->id;
+            $notifikasi->kategori = $request->kategori;
+            $notifikasi->judul = $request->judul;
+            $notifikasi->pesan = $request->pesan;
+            $notifikasi->save();
 
             return response()->json([
                 'status' => true,

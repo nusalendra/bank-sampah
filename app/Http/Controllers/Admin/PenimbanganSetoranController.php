@@ -100,11 +100,8 @@ class PenimbanganSetoranController extends Controller
      */
     public function update(Request $request)
     {
-        // Menempatkan id sampah dari frontend
-        // $sampahIds = $request->input('sampahId');
-
         $validator = Validator::make($request->all(), [
-            // 'sampah_id' => 'required',
+            'sampah_id' => 'required',
             'berat_sampah' => 'required',
         ]);
 
@@ -119,9 +116,9 @@ class PenimbanganSetoranController extends Controller
 
         try {
             // mengirim id sampah
-            $sampahIds = [1, 2];
+            $sampahIds = $request->sampah_id;
             // mengirim id setor sampah
-            $setorSampahId = 1;
+            $setorSampahId = $request->setor_sampah_id;
 
             $createPivotTable = [];
             $totalSetoran = [];

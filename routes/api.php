@@ -9,6 +9,8 @@ use App\Http\Controllers\Api\Auth\ForgotPasswordController;
 use App\Http\Controllers\Api\Auth\LoginController;
 use App\Http\Controllers\Api\Auth\LogoutController;
 use App\Http\Controllers\Api\Auth\RegisterController;
+use App\Http\Controllers\Nasabah\NotifikasiController;
+use App\Http\Controllers\Nasabah\RiwayatTransaksiController;
 use App\Http\Controllers\Nasabah\SetorSampahController;
 use App\Http\Controllers\Nasabah\TarikSaldoController;
 use App\Http\Controllers\ProfilController;
@@ -46,6 +48,14 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
     // post tarik saldo
     Route::post('/tarik-saldo', [TarikSaldoController::class, 'store']);
+    
+    // get data notifikasi
+    Route::get('/get-data-notifikasi', [NotifikasiController::class, 'getDataNotifikasi']);
+
+    // get data riwayat transaksi
+    Route::get('/get-data-riwayat-transaksi', [RiwayatTransaksiController::class, 'getDataRiwayatTransaksi']);
+
+    Route::put('/update-profil-nasabah', [ProfilController::class, 'updateProfilNasabah']);
 
     // Bagian Admin
 
